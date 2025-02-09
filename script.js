@@ -7,8 +7,12 @@ const restartBtn = document.getElementById('restart-btn');
 const startBtn = document.getElementById('start-btn');
 const backBtn = document.getElementById('back-btn');
 const startSection = document.getElementById('start-section');
-
-// Load sound effects
+const controlBtn = document.getElementById('control-btn');
+const controls = document.getElementById('controls');
+const upBtn = document.getElementById('up-btn');
+const downBtn = document.getElementById('down-btn');
+const leftBtn = document.getElementById('left-btn');
+const rightBtn = document.getElementById('right-btn');
 const pointSound = new Audio('assets/point.mp3');
 const gameOverSound = new Audio('assets/gameover.mp3');
 
@@ -26,13 +30,15 @@ function initGame() {
     score = 0;
     food = generateFood();
     scoreElement.textContent = score;
-    
+
     startSection.style.display = 'none';
     canvas.style.display = 'block';
     gameOverElement.style.display = 'none';
     restartBtn.style.display = 'none';
     finalScoreElement.style.display = 'none';
     backBtn.style.display = 'block';
+
+    controls.classList.add('hidden'); 
 
     clearInterval(gameInterval);
     gameInterval = setInterval(draw, 100);
@@ -47,6 +53,22 @@ document.addEventListener('keydown', (e) => {
     if ((e.key === 'ArrowDown' || e.key === 's') && direction !== 'UP') direction = 'DOWN';
     if ((e.key === 'ArrowLeft' || e.key === 'a') && direction !== 'RIGHT') direction = 'LEFT';
     if ((e.key === 'ArrowRight' || e.key === 'd') && direction !== 'LEFT') direction = 'RIGHT';
+});
+
+function setDirection(newDirection) {
+    if (newDirection === 'UP' && direction !== 'DOWN') direction = 'UP';
+    if (newDirection === 'DOWN' && direction !== 'UP') direction = 'DOWN';
+    if (newDirection === 'LEFT' && direction !== 'RIGHT') direction = 'LEFT';
+    if (newDirection === 'RIGHT' && direction !== 'LEFT') direction = 'RIGHT';
+}
+
+upBtn.addEventListener('click', () => setDirection('UP'));
+downBtn.addEventListener('click', () => setDirection('DOWN'));
+leftBtn.addEventListener('click', () => setDirection('LEFT'));
+rightBtn.addEventListener('click', () => setDirection('RIGHT'));
+
+controlBtn.addEventListener('click', () => {
+    controls.classList.toggle('show'); // Show/hide controls
 });
 
 function drawSnake() {
@@ -71,7 +93,7 @@ function updateSnake() {
         score++;
         scoreElement.textContent = score;
         food = generateFood();
-        pointSound.play(); 
+        pointSound.play();
     } else {
         snake.pop();
     }
@@ -87,21 +109,25 @@ function checkCollision() {
 
 function gameOver() {
     clearInterval(gameInterval);
-    gameOverSound.play(); // Play game over sound
+    gameOverSound.play();
     gameOverElement.style.display = 'block';
     finalScoreElement.textContent = `Your Score: ${score}`;
     finalScoreElement.style.display = 'block';
     restartBtn.style.display = 'block';
+
+    controls.classList.add('hidden'); 
 }
 
 function goToStartScreen() {
     clearInterval(gameInterval);
-    startSection.style.display = 'flex'; // Show Start Screen as flex (centering works)
-    canvas.style.display = 'none'; // Hide Game
+    startSection.style.display = 'flex';
+    canvas.style.display = 'none';
     gameOverElement.style.display = 'none';
     restartBtn.style.display = 'none';
     finalScoreElement.style.display = 'none';
-    backBtn.style.display = 'none'; // Hide Back Button
+    backBtn.style.display = 'none';
+
+    controls.classList.add('hidden'); 
 }
 
 function draw() {
