@@ -1,0 +1,92 @@
+body {
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQH4Z72kViUspODVhtMeKHonPIcKhq4N5mYIw&s');
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+h1{
+    -webkit-text-stroke: 1pt #ffffff;
+}
+
+#start-section {
+    background-image: url('assets/start_bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    height: 100vh; 
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#start-btn {
+    font-size: 20px;
+    padding: 15px 30px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#start-btn:hover {
+    background-color: #176c2a;
+}
+
+#game-canvas {
+    border: 2px solid rgb(82, 209, 63);
+    background-color: #fff;
+    display: none;
+}
+
+#game-over {
+    display: none;
+    font-size: 24px;
+    font-weight: bold;
+    color: red;
+    margin-top: 20px;
+}
+
+#final-score {
+    display: none;
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+}
+
+#restart-btn{
+    margin-top: 10px;
+}
+#back-btn {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #ff4c4c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: none;
+}
+
+#back-btn:hover {
+    background-color: #ff1a1a;
+}
